@@ -4,4 +4,6 @@
     <string name="humidity_header">Humidity: 0</string>
     <string name="wind_speed_header">Wind Speed: 0</string>
     <string name="precipitation_header">Precipitation: 0</string>
+
+    <string name="title_activity_maps">Map</string>
 </resources>

@@ -1,6 +1,9 @@
 package com.example.lab1;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.widget.TextView;
@@ -15,25 +18,33 @@ import com.android.volley.toolbox.BasicNetwork;
 import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Locale;
 
-public class LocationActivity extends AppCompatActivity {
+public class LocationActivity extends FragmentActivity implements OnMapReadyCallback {
     private static final String DARK_SKY_API_KEY = "abe7f3a9a6f05474acd945b2577bd8c3";
     private static final String LOCATION_LATITUDE = "location_latitude";
     private static final String LOCATION_LONGTITUDE = "location_longitude";
+
+    private GoogleMap mMap;
+    private static Double latitude, longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location);
 
-        Double latitude = getIntent().getDoubleExtra(LOCATION_LATITUDE, 0);
-        Double longitude = getIntent().getDoubleExtra(LOCATION_LONGTITUDE, 0);
+        latitude = getIntent().getDoubleExtra(LOCATION_LATITUDE, 0);
+        longitude = getIntent().getDoubleExtra(LOCATION_LONGTITUDE, 0);
 
         String weatherUrl = "https://api.darksky.net/forecast/" + DARK_SKY_API_KEY + "/" +
                 latitude + "," + longitude;
@@ -44,8 +55,29 @@ public class LocationActivity extends AppCompatActivity {
         getWeatherInformation(weatherUrl);
     }
 
+    /**
+     * Manipulates the map once available.
+     * This callback is triggered when the map is ready to be used.
+     * This is where we can add markers or lines, add listeners or move the camera.
+     * If Google Play services is not installed on the device, the user will be prompted to install
+     * it inside the SupportMapFragment. This method will only be triggered once the user has
+     * installed Google Play services and returned to the app.
+     */
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+
+        // Add a marker in Sydney and move the camera
+        LatLng location = new LatLng(latitude, longitude);
+        mMap.addMarker(new MarkerOptions().position(location).title("Marker in Sydney"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
+    }
+
     public void displayMap(Double latitude, Double longitude) {
-        // TODO:
+        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
     }
 
     public void displayWeatherInformation(Double temperature, Double humidity, Double windSpeed, Double precipitation) {
