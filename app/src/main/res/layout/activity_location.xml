@@ -6,4 +6,41 @@
     android:layout_height="match_parent"
     tools:context=".LocationActivity">
 
+    <TextView
+        android:id="@+id/temperature_text"
+        android:layout_width="149dp"
+        android:layout_height="41dp"
+        android:text="@string/temperature_header"
+        app:layout_constraintBottom_toTopOf="@+id/humidity_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/humidity_text"
+        android:layout_width="149dp"
+        android:layout_height="41dp"
+        android:text="@string/humidity_header"
+        app:layout_constraintBottom_toTopOf="@+id/wind_speed_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/wind_speed_text"
+        android:layout_width="149dp"
+        android:layout_height="41dp"
+        android:text="@string/wind_speed_header"
+        app:layout_constraintBottom_toTopOf="@+id/precipitation_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/precipitation_text"
+        android:layout_width="149dp"
+        android:layout_height="41dp"
+        android:text="@string/precipitation_header"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
