@@ -67,23 +67,25 @@ public class MainActivity extends AppCompatActivity {
             @Override
 
             public void onResponse(JSONObject response){
-                //try {
-                    System.out.println(response);
-                    //JSONObject results = response.getJSONObject("results");
-                    //System.out.println(results);
-                    //JSONObject results = (JSONObject) response.get("results");
-                    //JSONObject geometry = (JSONObject) results.get("geometry");
-                    //JSONArray location = (JSONArray) geometry.get("location");
+                System.out.println("Response: " + response);
+                try {
+                    JSONArray results = response.getJSONArray("results");
+                    System.out.println("Results: " + results);
 
-                    //JSONObject lat = location.getJSONObject(0);
-                    //JSONObject lng = location.getJSONObject(1);
-                    //JSONObject lat = (JSONObject) location.get("lat");
-                    //JSONObject lng = (JSONObject) location.get("lng");
+                    JSONObject geometry = results.getJSONObject(0).getJSONObject("geometry");
+                    System.out.println("Geometry: " + geometry);
 
-                    //System.out.println(lat + " - " + lng);
-                //} catch (JSONException e) {
-                //    System.out.println("asdf");
-                //}
+                    JSONObject location = geometry.getJSONObject("location");
+                    System.out.println("Location: " + location);
+
+                    Double lat = location.getDouble("lat");
+                    Double lng = location.getDouble("lng");
+
+                    System.out.println("Lat: " + lat);
+                    System.out.println("Lng: " + lng);
+                } catch (JSONException e) {
+                    System.out.println("asdf");
+                }
             }
         },
                 new Response.ErrorListener(){
