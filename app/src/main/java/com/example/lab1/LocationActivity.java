@@ -39,6 +39,7 @@ public class LocationActivity extends FragmentActivity implements OnMapReadyCall
     private static Double latitude, longitude;
 
     @Override
+    // Led by Hassan
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location);
@@ -63,6 +64,7 @@ public class LocationActivity extends FragmentActivity implements OnMapReadyCall
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
+    // Led by Ryan
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -73,6 +75,7 @@ public class LocationActivity extends FragmentActivity implements OnMapReadyCall
         mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
     }
 
+    // Led by Ryan
     public void displayMap(Double latitude, Double longitude) {
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -80,6 +83,7 @@ public class LocationActivity extends FragmentActivity implements OnMapReadyCall
         mapFragment.getMapAsync(this);
     }
 
+    // Led by Hassan
     public void displayWeatherInformation(Double temperature, Double humidity, Double windSpeed, Double precipitation) {
         TextView temperatureView = (TextView) findViewById(R.id.temperature_text);
         String temperatureText = String.format(Locale.US, "Temperature: %.2f\u2109", temperature);
@@ -101,6 +105,7 @@ public class LocationActivity extends FragmentActivity implements OnMapReadyCall
     /*
      The structure for this method is outlined in https://developer.android.com/training/volley.
      */
+    // Led by Hassan
     public void getWeatherInformation(String url) {
         RequestQueue requestQueue;
 

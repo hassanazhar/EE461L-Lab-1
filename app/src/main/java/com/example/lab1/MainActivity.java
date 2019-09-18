@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    // Led by Hassan
     public void locationOnClick (View view) {
         // Get the text view.
         EditText showLocationEditText = (EditText) findViewById(R.id.locationInputText);
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         System.out.println(locationUrl);
         geocodeLocation(locationUrl);
     }
-
+    // Led by Ryan
     public void startLocationActivity(Double latitude, Double longtitude) {
         Intent locationIntent = new Intent(this, LocationActivity.class);
 
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
     /*
      The structure for this method is outlined in https://developer.android.com/training/volley.
      */
+    // Led by Hassan
     public void geocodeLocation(String url) {
         RequestQueue requestQueue;
 
